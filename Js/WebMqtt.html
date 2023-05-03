@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MQTT Web Protocol Demo</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+
+        #result {
+            margin: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+            #result p {
+                margin: 0;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .disconnected {
+            color: orange;
+        }
+
+        .message {
+            color:black;
+        }
+
+    </style>
+    <script>
+        const client = mqtt.connect('ws:localhost:15675/ws');
+
+        function postMessage(text, className) {
+            const result = document.getElementById('result');
+            const p = document.createElement('p');
+            p.classList.add(className);
+            p.textContent = text;
+            result.appendChild(p);
+        }
+
+        client.on('connect', function () {
+            postMessage('Successfully connected to MQTT broker', 'success');
+
+            client.subscribe('invoice/*', function (err) {
+                if (!err) {
+                    postMessage('Successfully subscribed to invoice/* topic', 'success');
+                } else {
+                    postMessage(`Failed to subscribe to invoice/* topic: ${err.message}`, 'error');
+                }
+            });
+        });
+
+        client.on('message', function (topic, message) {
+            postMessage(`${topic}: ${message.toString()}`, 'message');
+        });
+
+        client.on('close', function () {
+            postMessage('Lost connection to MQTT broker, don\'t worry, we have auto - reconnect', 'disconnected');
+        });
+    </script>
+</head>
+<body>
+    <h1>MQTT Web Protocol Demo</h1>
+    <div id="result"></div>
+</body>
+</html>
+
+
+
+
+
+
