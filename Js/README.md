@@ -14,11 +14,11 @@ Replace `192.168.140.70:31090` with the address and port of your MQTT broker.
 To change the topic that the client subscribes to, you can modify the following line of code:
 
 ```js
-client.subscribe('invoice/', function (err) {
+client.subscribe('+/invoice/', function (err) {
   if (!err) {
-    postMessage('Successfully subscribed to invoice/ topic', 'success');
+    postMessage('Successfully subscribed to +/invoice/ topic', 'success');
   } else {
-    postMessage(Failed to subscribe to invoice/* topic: ${err.message}, 'error');
+    postMessage(Failed to subscribe to +/invoice/* topic: ${err.message}, 'error');
   }
 });
 ```
