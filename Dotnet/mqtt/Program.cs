@@ -48,9 +48,9 @@ class Program
 		// Start the MQTT client
 		await mqttClient.StartAsync(options);
 
-        // Subscribe to the "invoice/*" topic with quality of service at most once
-        await mqttClient.SubscribeAsync(new[] { new MqttTopicFilterBuilder()
-			.WithTopic("#")
+		// Subscribe to the "+/invoice/*" topic with quality of service at most once
+		await mqttClient.SubscribeAsync(new[] { new MqttTopicFilterBuilder()
+			.WithTopic("+/invoice/*")
 			.WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtMostOnce)
 			.Build() });
 

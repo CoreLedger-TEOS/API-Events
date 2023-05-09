@@ -22,5 +22,5 @@ The MQTT client is configured in the `Program.cs` file. Here are the options you
 // Set the MQTT broker endpoint
     .WithWebSocketServer("localhost:15675/ws") 
 
-// Subscribe to the "invoice/*" topic with quality of service at most once
-    .WithTopic("invoice/*")
+// Subscribe to the "+/invoice/*" topic with quality of service at most once
+    .WithTopic("+/invoice/*")

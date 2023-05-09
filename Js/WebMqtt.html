@@ -61,11 +61,11 @@
         client.on('connect', function () {
             postMessage('Successfully connected to MQTT broker', 'success');
 
-            client.subscribe('invoice/*', function (err) {
+            client.subscribe('+/invoice/*', function (err) {
                 if (!err) {
-                    postMessage('Successfully subscribed to invoice/* topic', 'success');
+                    postMessage('Successfully subscribed to +/invoice/* topic', 'success');
                 } else {
-                    postMessage(`Failed to subscribe to invoice/* topic: ${err.message}`, 'error');
+                    postMessage(`Failed to subscribe to +/invoice/* topic: ${err.message}`, 'error');
                 }
             });
         });
