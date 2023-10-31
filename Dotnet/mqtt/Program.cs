@@ -18,7 +18,7 @@ class Program
 		var options = new ManagedMqttClientOptionsBuilder()
 			.WithAutoReconnectDelay(TimeSpan.FromSeconds(10)) // Set the delay for automatic reconnection
 			.WithClientOptions(new MqttClientOptionsBuilder()
-			.WithWebSocketServer($"192.168.140.70:31090/ws") // Set the MQTT broker endpoint
+			.WithWebSocketServer($"rabbitmq-k8s.coreledger.net:30530/ws") // Set the MQTT broker endpoint
 			.WithCleanSession() // Specify a clean session
 			.Build())
 			.Build();

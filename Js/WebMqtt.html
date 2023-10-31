@@ -48,7 +48,7 @@
 
     </style>
     <script>
-        const client = mqtt.connect('ws:localhost:15675/ws');
+        const client = mqtt.connect('ws:rabbitmq-k8s.coreledger.net:30530/ws');
 
         function postMessage(text, className) {
             const result = document.getElementById('result');
